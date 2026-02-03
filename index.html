@@ -1,61 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>For You ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      width: 300px;
-    }
-    h1 {
-      color: #ff3366;
-    }
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      margin: 10px;
-    }
-    #yes {
-      background: #ff3366;
-      color: white;
-    }
-    #no {
-      background: #ddd;
-      position: absolute;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shania 💖</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background: radial-gradient(circle at top, #ff758c, #ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:20px;
+  animation: floatUp linear infinite;
+  opacity:0.8;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-120vh) scale(1.8);
+    opacity:0;
+  }
+}
+
+.box{
+  background:white;
+  width:90%;
+  max-width:360px;
+  padding:25px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  animation: pop 1s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(0.7);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+h1{
+  color:#ff3d68;
+  font-size:22px;
+}
+
+p{
+  font-size:16px;
+  margin:15px 0;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:10px;
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#yes{
+  background:#ff3d68;
+  color:white;
+  box-shadow:0 0 15px #ff3d68;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 10px #ff3d68}
+  50%{box-shadow:0 0 25px #ff3d68}
+  100%{box-shadow:0 0 10px #ff3d68}
+}
+
+#no{
+  background:#ddd;
+  position:relative;
+}
+</style>
 </head>
+
 <body>
-<div class="box">
-  <h1>Shania, Will you be my Valentine? 💖</h1>
-  <button id="yes" onclick="yesClick()">YES</button>
-  <button id="no" onmouseover="moveNo()">NO</button>
+
+<div class="box" id="box">
+  <h1>Shania, will you be my Valentine? 💖</h1>
+  <p id="text">Dil se jawab dena 😌</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClick()">YES 💕</button>
+    <button id="no" onclick="noClick()">NO 😢</button>
+  </div>
 </div>
+
 <script>
-  function yesClick() {
-    document.body.innerHTML = "<h1 style='color:white;'>I Love You ❤️😍</h1>";
-  }
-  function moveNo() {
-    let x = Math.random() * (window.innerWidth - 100);
-    let y = Math.random() * (window.innerHeight - 50);
-    document.getElementById("no").style.left = x + "px";
-    document.getElementById("no").style.top = y + "px";
-  }
+/* Floating hearts generator */
+setInterval(()=>{
+  let heart = document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+},300);
+
+let texts=[
+  "Shania… are you sure? 😢",
+  "Soch lo ache se 💭",
+  "Dil tod dogi kya Shania 💔",
+  "Ek aur chance dedo 🥺",
+  "Itna bhi stone-heart mat bano 😭",
+  "Bas YES hi bacha hai ab 😶"
+];
+
+let i=0;
+let noScale=1;
+
+function noClick(){
+  let text=document.getElementById("text");
+  let no=document.getElementById("no");
+
+  text.innerText=texts[i%texts.length];
+  i++;
+
+  let x=Math.random()*120-60;
+  let y=Math.random()*80-40;
+  no.style.transform=`translate(${x}px,${y}px) scale(${noScale})`;
+
+  noScale-=0.08;
+  if(noScale<0.4) noScale=0.4;
+}
+
+function yesClick(){
+  document.getElementById("box").innerHTML=`
+    <h1>YAYYYY SHANIA 😍💖</h1>
+    <p>
+      You just made my heart so happy ❤️<br><br>
+      From this moment…<br>
+      you are officially my Valentine 💐<br><br>
+      Endless smiles, care & love — only for you 😌
+    </p>
+  `;
+}
 </script>
+
 </body>
 </html>
