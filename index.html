@@ -1,153 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Shania ❤️</title>
-
-<style>
-*{box-sizing:border-box;font-family:'Poppins',sans-serif}
-
-body{
-  margin:0;
-  height:100vh;
-  overflow:hidden;
-  background:radial-gradient(circle at top,#ff758c,#ff7eb3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.heart{
-  position:absolute;
-  bottom:-20px;
-  font-size:20px;
-  animation:float 5s linear infinite;
-}
-@keyframes float{
-  to{transform:translateY(-120vh) scale(1.8);opacity:0}
-}
-
-.box{
-  background:white;
-  width:90%;
-  max-width:360px;
-  padding:25px;
-  border-radius:25px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.3);
-}
-
-h1{color:#ff3d68;font-size:22px}
-p{font-size:15px;line-height:1.6}
-
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:15px;
-}
-
-button{
-  padding:12px 20px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-#yes{
-  background:#ff3d68;
-  color:white;
-  box-shadow:0 0 15px #ff3d68;
-}
-
-#no{
-  background:#ddd;
-  position:relative;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>For Shania ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="box" id="box">
-  <h1>Shania, will you be my Valentine? ❤️</h1>
-  <p id="text">Dil se jawab dena 😌</p>
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="buttons">
-    <button id="yes" onclick="yesClick()">YES 💕</button>
-    <button id="no" onclick="noClick()">NO 😢</button>
-  </div>
+<canvas id="hearts"></canvas>
+
+<section class="hero">
+  <h1 class="name">SHANIA</h1>
+  <h2 class="type"></h2>
+  <button onclick="showSurprise()">Tap Here 💖</button>
+</section>
+
+<section class="love hidden">
+  <p>
+    SHANIA, you are not just someone I love…  
+    you are the reason my heart believes in forever.
+  </p>
+</section>
+
+<section class="promise hidden">
+  <p>
+    No matter how crazy life gets,  
+    my soul will always find its way back to you ❤️
+  </p>
+</section>
+
+<div class="popup" id="popup">
+  <h2>I Love You SHANIA 💍</h2>
+  <p>Today. Tomorrow. Always.</p>
 </div>
 
-<script>
-/* floating hearts */
-setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5000);
-},350);
-
-let texts=[
- "Shania… are you sure? 😢",
- "Soch lo ache se 💭",
- "Dil tod dogi kya 💔",
- "Ek aur chance dedo 🥺",
- "Bas YES hi bacha hai 😭"
-];
-
-let count=0;
-let yesScale=1;
-
-function noClick(){
-  let no=document.getElementById("no");
-  let text=document.getElementById("text");
-  let yes=document.getElementById("yes");
-
-  text.innerText=texts[count] || "";
-  count++;
-
-  yesScale+=0.15;
-  yes.style.transform=`scale(${yesScale})`;
-
-  if(count>=5){
-    no.style.display="none";
-    text.innerText="Ab sirf ek hi option bacha hai 😌❤️";
-  }
-}
-
-function yesClick(){
-  let box=document.getElementById("box");
-
-  box.innerHTML=`
-    <h1>😌❤️</h1>
-    <p>Mujhe to pata hi tha tum mujhe pasand karte ho 💖</p>
-  `;
-
-  setTimeout(()=>{
-    box.innerHTML=`
-      <h1>Shania ❤️</h1>
-      <p>
-        I really hope ek din hum dono saath marriage karein,<br>
-        aur hamesha hamesha ek-dusre ka saath dein.<br><br>
-
-        Hum ek-dusre ko samjhein, support karein,<br>
-        aur kabhi bhi jaan-boojh ke ek-dusre ka dil na dukhayein.<br><br>
-
-        Main wada karta hoon,<br>
-        main tumhara dil kabhi nahi todunga,<br>
-        tumhe hamesha khush rakhne ki koshish karunga,<br>
-        aur har din tumse aur zyada pyaar karunga 💖
-      </p>
-    `;
-  },2000);
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
