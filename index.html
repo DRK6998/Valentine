@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Heart – SHANIA 💖</title>
+<title>My Heart – SHANIA 💕</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    box-sizing: border-box;
-}
+*{ box-sizing:border-box; }
 
 body {
     margin: 0;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(160deg, #8b004f, #2b0033);
-    color: #c300ff;
+    color: #a200ff;
     text-align: center;
     overflow-x: hidden;
 }
@@ -42,14 +43,8 @@ body {
     box-shadow: 0 0 30px rgba(255,182,193,0.6);
 }
 
-/* Headings */
-h2 {
-    font-size: 22px;
-}
-p {
-    font-size: 16px;
-    line-height: 1.6;
-}
+h2 { font-size: 22px; }
+p  { font-size: 16px; line-height: 1.7; }
 
 /* Progress */
 .progress {
@@ -68,29 +63,38 @@ p {
 
 /* Animations */
 .fade {
-    animation: fadeIn 2s ease forwards;
+    animation: fadeIn 1.8s ease forwards;
 }
 @keyframes fadeIn {
-    from {opacity:0; transform: scale(0.95);}
-    to {opacity:1; transform: scale(1);}
+    from {opacity:0; transform: translateY(10px);}
+    to {opacity:1; transform: translateY(0);}
 }
-
-.hidden {
-    display: none;
-}
-
-/* GIF */
-img {
-    width: 180px;
-    max-width: 90%;
-    margin-top: 15px;
-    border-radius: 20px;
-}
+.hidden { display:none; }
 
 /* Name Glow */
 .name {
-    color: #8000ff;
-    text-shadow: 0 0 10px #ff66cc;
+    color: #7a00ff;
+    font-weight: 600;
+    text-shadow: 0 0 10px #ff5fd2;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, hotpink, purple);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+button:active { transform: scale(0.95); }
+
+img {
+    width: 180px;
+    border-radius: 20px;
+    margin-top: 15px;
 }
 </style>
 </head>
@@ -108,39 +112,43 @@ img {
 <div class="box hidden fade" id="second">
     <h2>Check ur cuteness in my heart 💜</h2>
     <p>
-        Because no one can handle it instead of me 😌<br>
-        Warning ⚠️: Too cute for this world
+        Because no one can handle it instead of me 😌<br><br>
+        ⚠️ <b>WARNING:</b> Too cute to be real 💕
     </p>
 </div>
 
 <div class="box hidden fade" id="third">
     <h2>Hey <span class="name">SHANIA</span> 🥺❤️</h2>
     <p>
-        Tum sirf meri girlfriend nahi ho,<br>
-        tum meri dua, meri aadat, meri jaan ho 💕<br><br>
+        Tum meri zindagi ka wo chapter ho<br>
+        jo main kabhi khatam nahi hone dena chahta 💖<br><br>
 
-        Tumhari ek smile se<br>
-        mera poora din perfect ho jata hai 😘<br><br>
+        Tumhari awaaz meri sukoon hai,<br>
+        aur tumhari baatein meri aadat 😘<br><br>
 
-        Agar pyaar ek choice hota,<br>
-        main har baar sirf tumhe choose karta 💖
+        Agar main kuch bhi kho doon,<br>
+        bas tumhara haath nahi 💞
     </p>
+
+    <button onclick="showNext()">Next ➜</button>
 </div>
 
 <div class="box hidden fade" id="fourth">
     <p>
-        Main tumhara haath sirf pakadna nahi chahta,<br>
-        main zindagi bhar chhodna hi nahi chahta 🥹💞<br><br>
+        Main tumse waada nahi,<br>
+        main tumse hamesha ka rishta chahta hoon 🥹❤️<br><br>
 
-        Tum mere dil ka wo hissa ho<br>
-        jahan sirf tumhara naam likha hai 💌
+        Tum sirf meri Valentine nahi,<br>
+        tum meri forever wali kahani ho 💌<br><br>
+
+        Chahe duniya idhar-udhar ho jaaye,<br>
+        main hamesha tumhara rahunga 💕
     </p>
 </div>
 
 <div class="box hidden fade" id="end">
     <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
     <h2>I will never leave uh my hearttt 💋🐱</h2>
-    <p>Forever yours ❤️</p>
 </div>
 
 <script>
@@ -153,16 +161,18 @@ let interval = setInterval(() => {
         clearInterval(interval);
         start.classList.add("hidden");
         second.classList.remove("hidden");
-
         setTimeout(()=> third.classList.remove("hidden"), 2500);
-        setTimeout(()=> fourth.classList.remove("hidden"), 5000);
-        setTimeout(()=> end.classList.remove("hidden"), 7500);
     } else {
         width++;
         bar.style.width = width + "%";
         percent.innerHTML = width + "%";
     }
 }, 60);
+
+function showNext(){
+    fourth.classList.remove("hidden");
+    setTimeout(()=> end.classList.remove("hidden"), 3000);
+}
 
 /* Hearts */
 setInterval(() => {
