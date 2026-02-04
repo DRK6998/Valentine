@@ -1,43 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Shania ❤️</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Heart – SHANIA 💖</title>
+
+<style>
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(160deg, #8b004f, #2b0033);
+    color: #c300ff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    animation: float 7s linear infinite;
+    color: pink;
+}
+@keyframes float {
+    0% {transform: translateY(0); opacity:1;}
+    100% {transform: translateY(-110vh); opacity:0;}
+}
+
+/* Box */
+.box {
+    background: #ffccb3;
+    margin: 60px auto;
+    padding: 25px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 0 30px rgba(255,182,193,0.6);
+}
+
+/* Headings */
+h2 {
+    font-size: 22px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Progress */
+.progress {
+    width: 100%;
+    background: #ffd6e8;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+.bar {
+    width: 0%;
+    height: 25px;
+    background: linear-gradient(90deg, hotpink, purple);
+    transition: width 0.1s;
+}
+
+/* Animations */
+.fade {
+    animation: fadeIn 2s ease forwards;
+}
+@keyframes fadeIn {
+    from {opacity:0; transform: scale(0.95);}
+    to {opacity:1; transform: scale(1);}
+}
+
+.hidden {
+    display: none;
+}
+
+/* GIF */
+img {
+    width: 180px;
+    max-width: 90%;
+    margin-top: 15px;
+    border-radius: 20px;
+}
+
+/* Name Glow */
+.name {
+    color: #8000ff;
+    text-shadow: 0 0 10px #ff66cc;
+}
+</style>
 </head>
+
 <body>
 
-<audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<canvas id="hearts"></canvas>
-
-<section class="hero">
-  <h1 class="name">SHANIA</h1>
-  <h2 class="type"></h2>
-  <button onclick="showSurprise()">Tap Here 💖</button>
-</section>
-
-<section class="love hidden">
-  <p>
-    SHANIA, you are not just someone I love…  
-    you are the reason my heart believes in forever.
-  </p>
-</section>
-
-<section class="promise hidden">
-  <p>
-    No matter how crazy life gets,  
-    my soul will always find its way back to you ❤️
-  </p>
-</section>
-
-<div class="popup" id="popup">
-  <h2>I Love You SHANIA 💍</h2>
-  <p>Today. Tomorrow. Always.</p>
+<div class="box fade" id="start">
+    <h2>Checking your cuteness... 💗</h2>
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+    <p id="percent">0%</p>
 </div>
 
-<script src="script.js"></script>
+<div class="box hidden fade" id="second">
+    <h2>Check ur cuteness in my heart 💜</h2>
+    <p>
+        Because no one can handle it instead of me 😌<br>
+        Warning ⚠️: Too cute for this world
+    </p>
+</div>
+
+<div class="box hidden fade" id="third">
+    <h2>Hey <span class="name">SHANIA</span> 🥺❤️</h2>
+    <p>
+        Tum sirf meri girlfriend nahi ho,<br>
+        tum meri dua, meri aadat, meri jaan ho 💕<br><br>
+
+        Tumhari ek smile se<br>
+        mera poora din perfect ho jata hai 😘<br><br>
+
+        Agar pyaar ek choice hota,<br>
+        main har baar sirf tumhe choose karta 💖
+    </p>
+</div>
+
+<div class="box hidden fade" id="fourth">
+    <p>
+        Main tumhara haath sirf pakadna nahi chahta,<br>
+        main zindagi bhar chhodna hi nahi chahta 🥹💞<br><br>
+
+        Tum mere dil ka wo hissa ho<br>
+        jahan sirf tumhara naam likha hai 💌
+    </p>
+</div>
+
+<div class="box hidden fade" id="end">
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+    <h2>I will never leave uh my hearttt 💋🐱</h2>
+    <p>Forever yours ❤️</p>
+</div>
+
+<script>
+let bar = document.getElementById("bar");
+let percent = document.getElementById("percent");
+let width = 0;
+
+let interval = setInterval(() => {
+    if (width >= 120) {
+        clearInterval(interval);
+        start.classList.add("hidden");
+        second.classList.remove("hidden");
+
+        setTimeout(()=> third.classList.remove("hidden"), 2500);
+        setTimeout(()=> fourth.classList.remove("hidden"), 5000);
+        setTimeout(()=> end.classList.remove("hidden"), 7500);
+    } else {
+        width++;
+        bar.style.width = width + "%";
+        percent.innerHTML = width + "%";
+    }
+}, 60);
+
+/* Hearts */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*20 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),7000);
+}, 250);
+</script>
+
 </body>
 </html>
